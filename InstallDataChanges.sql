@@ -521,3 +521,76 @@ drop table #tablesWithCompareStrings
 drop table #updateQueries
 
 **/
+
+select 'EXEC sp_fkeys ''' + SyncTable + '''' from #tablesWithCompareStrings
+
+EXEC sp_fkeys '[Direct.].[Sites]'
+EXEC sp_fkeys '[Framework.].[Job]'
+EXEC sp_fkeys '[Framework.].[JobGroup]'
+EXEC sp_fkeys '[Framework.].[Parameter]'
+EXEC sp_fkeys '[Framework.].[RestPath]'
+EXEC sp_fkeys '[Ontology.].[ClassGroup]'
+EXEC sp_fkeys '[Ontology.].[ClassGroupClass]'
+EXEC sp_fkeys '[Ontology.].[ClassProperty]'
+EXEC sp_fkeys '[Ontology.].[DataMap]'
+EXEC sp_fkeys '[Ontology.].[Namespace]'
+EXEC sp_fkeys '[Ontology.].[PropertyGroup]'
+EXEC sp_fkeys '[Ontology.].[PropertyGroupProperty]'
+EXEC sp_fkeys '[Ontology.Presentation].[XML]'
+EXEC sp_fkeys '[ORCID.].[DefaultORCIDDecisionIDMapping]'
+EXEC sp_fkeys '[ORCID.].[RecordLevelAuditType]'
+EXEC sp_fkeys '[ORCID.].[REF_Decision]'
+EXEC sp_fkeys '[ORCID.].[REF_Permission]'
+EXEC sp_fkeys '[ORCID.].[REF_PersonStatusType]'
+EXEC sp_fkeys '[ORCID.].[REF_RecordStatus]'
+EXEC sp_fkeys '[ORCID.].[REF_WorkExternalType]'
+EXEC sp_fkeys '[ORNG.].[Apps]'
+EXEC sp_fkeys '[ORNG.].[AppViews]'
+EXEC sp_fkeys '[Profile.Data].[Publication.MyPub.Category]'
+EXEC sp_fkeys '[Profile.Data].[Publication.Type]'
+EXEC sp_fkeys '[RDF.Security].[Group]'
+EXEC sp_fkeys '[User.Session].[Bot]'
+EXEC sp_fkeys '[Utility.NLP].[ParsePorterStemming]'
+EXEC sp_fkeys '[Utility.NLP].[StopWord]'
+EXEC sp_fkeys '[Utility.NLP].[Thesaurus.Source]'
+
+select * from sys.foreign_key_columns
+/*
+; with columns as (
+	select '[' + s.name + '].[' + o.name + ']' as tableName, c.name as columnName, t.name as typeName, c.is_nullable as nullable from sys.columns c join sys.objects o 
+	on o.object_id = c.object_id
+	join sys.schemas s 
+	on o.schema_id = s.schema_id
+	join sys.types t
+	on c.user_type_id = t.user_type_id
+), columnsWithTypes as (
+	select * from #ColumnsToSync cts join columns c
+	on cts.SyncTable = c.tableName
+	and (cts.IndexColumn = c.columnName or cts.SyncColumn = c.columnName or cts.IdentityColumn = c.columnName)
+)
+*/
+
+;with tables as (
+select '[' + s.name + '].[' + o.name + ']' as tableName, o.object_id from sys.objects o 
+	join sys.schemas s 
+	on o.schema_id = s.schema_id
+	join #tablesWithCompareStrings t
+	on '[' + s.name + '].[' + o.name + ']' = t.SyncTable
+)
+select tc.tableName as constraintTable, tr.tableName as referencedTable from sys.foreign_key_columns c
+join tables tc on parent_object_id = tc.object_id
+join tables tr on referenced_object_id = tr.object_id
+
+select * from sys.foreign_key_columns
+select '[' + s.name + '].[' + o.name + ']' as tableName, o.object_id from sys.objects o 
+	join sys.schemas s 
+	on o.schema_id = s.schema_id
+	join #tablesWithCompareStrings t
+	on '[' + s.name + '].[' + o.name + ']' = t.SyncTable
+
+	/**
+	drop from constraint table
+	drop from referenced table
+	Update references table
+	update constraint table
+	insert into referenced tab

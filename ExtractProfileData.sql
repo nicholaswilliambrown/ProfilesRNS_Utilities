@@ -1,4 +1,5 @@
 Create schema [Profile.Export]
+GO
 
 CREATE TABLE [Profile.Export].[Award](
 	[AwardID] [int] IDENTITY(1,1) NOT NULL,
@@ -175,3 +176,38 @@ join [RDF.Stage].InternalNodeMap i on np.nodeID = I.NodeID
 and i.Class = 'http://xmlns.com/foaf/0.1/Person' and i.InternalType = 'Person'
 join [Profile.Data].Person p on i.InternalID = p.PersonID 
   
+
+CREATE TABLE [Profile.Export].[DefaultProxy](
+	[DefaultProxyID] [int] IDENTITY(0,1) NOT NULL,
+	[InternalUsername] [nvarchar](50) NULL,
+	[ProxyForInstitution] [nvarchar](500) NULL,
+	[ProxyForDepartment] [nvarchar](500) NULL,
+	[ProxyForDivision] [nvarchar](500) NULL,
+	[IsVisible] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[DefaultProxyID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+insert into [Profile.Export].[DefaultProxy] (InternalUserName, ProxyForInstitution, ProxyForDepartment, ProxyForDivision, IsVisible)
+select InternalUserName, ProxyForInstitution, ProxyForDepartment, ProxyForDivision, IsVisible from [User.Account].DefaultProxy p join [User.Account].[User] u
+on p.UserID = u.UserID
+
+
+CREATE TABLE [Profile.Export].[DesignatedProxy](
+	[User] [nvarchar](50) NULL,
+	[ProxyForUser]  [nvarchar](50) NULL
+	) ON [PRIMARY]
+
+GO
+
+insert into [Profile.Export].[DesignatedProxy] ([User], ProxyForUser)
+  SELECT p.Internalusername as [User], p2.Internalusername as ProxyForUser
+  FROM [User.Account].[DesignatedProxy] d
+  join [User.Account].[User] p
+  on d.UserID = p.UserID
+  join [User.Account].[User] p2
+  on d.ProxyForUserID = p2.UserID
