@@ -211,3 +211,13 @@ insert into [Profile.Export].[DesignatedProxy] ([User], ProxyForUser)
   on d.UserID = p.UserID
   join [User.Account].[User] p2
   on d.ProxyForUserID = p2.UserID
+  
+  
+  CREATE TABLE [Profile.Export].[Publication.PubMed.DisambiguationAffiliation](
+	[affiliation] [varchar](1000) NULL
+) ON [PRIMARY]
+
+GO
+
+insert into [Profile.Export].[Publication.PubMed.DisambiguationAffiliation] (Affiliation) 
+select Affiliation from [Profile.Data].[Publication.PubMed.DisambiguationAffiliation]

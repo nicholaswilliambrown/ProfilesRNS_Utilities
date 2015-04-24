@@ -21,6 +21,7 @@ Select *, 0 as PersonID into [Profile.Import].[Publication.Person.Exclude] from 
 Select * into [Profile.Import].[RDF.Security.NodeProperty] from [Profile.Export].[RDF.Security.NodeProperty]
 select *, 0 as UserID into [Profile.Import].[DefaultProxy] from [Profile.Export].[DefaultProxy]
 select *, 0 as UserID, 0 as ProxyForUserID into [Profile.Import].[DesignatedProxy] from [Profile.Export].[DesignatedProxy]
+Select * into [Profile.Import].[Publication.PubMed.DisambiguationAffiliation] from [Profile.Export].[Publication.PubMed.DisambiguationAffiliation]
 
 /**
 * Update Import tables with PersonID and UserID Values as appropriate
@@ -132,6 +133,13 @@ select [UserID], [ProxyForInstitution], [ProxyForDepartment], [ProxyForDivision]
 
 insert into [User.Account].[DesignatedProxy] ([UserID], [ProxyForUserID])
 select [UserID], [ProxyForUserID] from [Profile.Import].DesignatedProxy
+
+
+/**
+* Disambiguation Affiliations
+**/
+insert into [Profile.Data].[Publication.PubMed.DisambiguationAffiliation] (Affiliation) 
+select Affiliation from [Profile.Import].[Publication.PubMed.DisambiguationAffiliation]
 
 /**
 * Run Job Group 3
