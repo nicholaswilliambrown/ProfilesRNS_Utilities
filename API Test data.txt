@@ -1,0 +1,68 @@
+/*************************
+*                        *
+* Griffin Disambiguation:*
+*                        *
+*************************/
+ 
+ 
+ curl.exe -d "<FindPMIDs><Name><First>Griffin</First><Middle>M</Middle><Last>Weber</Last><Suffix/></Name><RequireFirstName>false</RequireFirstName><LocalDuplicateNames>1</LocalDuplicateNames><MatchThreshold>9.800000000000000e-001</MatchThreshold><EmailList><Email>Griffin_Weber@hms.harvard.edu</Email></EmailList><AffiliationList><Affiliation>%Boston%02115%</Affiliation></AffiliationList></FindPMIDs>" -H"Content-Type: text/xml" http://profiles.catalyst.harvard.edu/services/GetPMIDs/default.asp
+ 
+ curl.exe -d "<FindPMIDs><Name><First>Griffin</First><Middle>M</Middle><Last>Weber</Last><Suffix/></Name><RequireFirstName>false</RequireFirstName><LocalDuplicateNames>1</LocalDuplicateNames><MatchThreshold>9.800000000000000e-001</MatchThreshold><EmailList><Email>Griffin_Weber@hms.harvard.edu</Email></EmailList><AffiliationList><Affiliation>%Boston%02115%</Affiliation></AffiliationList></FindPMIDs>" -H"Content-Type: text/xml" http://weberdemo.hms.harvard.edu/disambiguation/services/GetPMIDs/default.asp
+ 
+/*************************
+*                        *
+* Bibliometric Data:     *
+*                        *
+*************************/
+
+ 
+  curl.exe -d "<PMIDS><PMID>31935257</PMID><PMID>31935621</PMID><PMID>31937606</PMID><PMID>31938892</PMID><PMID>31940426</PMID><PMID>31942009</PMID></PMIDS>" -H"Content-Type: text/xml" http://profiles.catalyst.harvard.edu/services/GetPMIDs/GetBibliometricData.asp
+ 
+/*************************
+*                        *
+* Get PubMed XML batch:  *
+*                        *
+*************************/
+ 
+ 
+ 
+  curl.exe -d "<PUBLICATIONS><PUBLICATION PMID=\"1\"/><PUBLICATION PMID=\"2\"/></PUBLICATIONS>" -H"Content-Type: text/xml" http://profiles.catalyst.harvard.edu/services/GetPMIDs/GetPubMedXMLBatch.asp
+  
+/*************************
+*                        *
+* Funding Data Test:     *
+*                        *
+*************************/
+	
+
+	 
+curl.exe -d "<FindFunding><Person><PersonID>1538</PersonID><Name><First>Griffin</First><Middle>M</Middle><Last>Weber</Last><Suffix/></Name><LocalDuplicateNames>1</LocalDuplicateNames><EmailList><Email>weber@hms.harvard.edu</Email></EmailList><PMIDAddList><PMID>23349080</PMID><PMID>19854939</PMID><PMID>22037890</PMID><PMID>20680384</PMID><PMID>24509520</PMID><PMID>15226823</PMID><PMID>25853687</PMID><PMID>12463949</PMID><PMID>18541841</PMID><PMID>11815958</PMID><PMID>15219292</PMID><PMID>20190053</PMID><PMID>12209713</PMID><PMID>11788827</PMID><PMID>15302633</PMID><PMID>24854141</PMID><PMID>28468796</PMID><PMID>12659816</PMID><PMID>11707567</PMID><PMID>22733975</PMID><PMID>16359929</PMID><PMID>19567788</PMID><PMID>11544205</PMID></PMIDAddList><PMIDIncludeList><PMID>23349080</PMID><PMID>25987658</PMID><PMID>22686207</PMID><PMID>33141090</PMID><PMID>23533569</PMID><PMID>32211868</PMID><PMID>22037890</PMID><PMID>24509520</PMID><PMID>15226823</PMID><PMID>33566082</PMID><PMID>25853687</PMID><PMID>23705970</PMID><PMID>27438317</PMID><PMID>34113801</PMID><PMID>33791734</PMID><PMID>12463949</PMID><PMID>18541841</PMID><PMID>32685895</PMID><PMID>11815958</PMID><PMID>22511918</PMID><PMID>34533459</PMID><PMID>28771391</PMID><PMID>29016972</PMID><PMID>23734227</PMID><PMID>31797605</PMID><PMID>15219292</PMID><PMID>20190053</PMID><PMID>30450803</PMID><PMID>12209713</PMID><PMID>32805036</PMID><PMID>34252969</PMID><PMID>11788827</PMID><PMID>15302633</PMID><PMID>24699371</PMID><PMID>24854141</PMID><PMID>33564777</PMID><PMID>28468796</PMID><PMID>25957825</PMID><PMID>24821734</PMID><PMID>34115127</PMID><PMID>34608931</PMID><PMID>12659816</PMID><PMID>32232057</PMID><PMID>11707567</PMID><PMID>30620344</PMID><PMID>32864472</PMID><PMID>16359929</PMID><PMID>19567788</PMID><PMID>24303240</PMID><PMID>26173540</PMID><PMID>33785839</PMID><PMID>29679716</PMID><PMID>33600347</PMID><PMID>29712648</PMID></PMIDIncludeList><PMIDExcludeList><PMID>15647455</PMID><PMID>24807665</PMID><PMID>21965473</PMID><PMID>17903664</PMID><PMID>16315281</PMID><PMID>11250920</PMID><PMID>17240179</PMID><PMID>27984726</PMID><PMID>15773043</PMID><PMID>21626378</PMID><PMID>21818837</PMID><PMID>11399495</PMID><PMID>21964270</PMID><PMID>12791381</PMID><PMID>17095751</PMID><PMID>18700078</PMID><PMID>18441018</PMID><PMID>18480495</PMID><PMID>12535768</PMID><PMID>17383443</PMID><PMID>9679085</PMID><PMID>17320084</PMID><PMID>21912858</PMID></PMIDExcludeList><URI>http://localhost:55956/profile/38407</URI></Person></FindFunding>" -H"Content-Type: text/xml" http://profiles.catalyst.harvard.edu/services/NIHGrants/FindFunding.asp
+
+/*************************
+*                        *
+* Search Grants:         *
+*                        *
+*************************/
+
+
+ curl.exe -d "<SearchGrants><Name><First></First><Last>kohane</Last></Name><Project_Num></Project_Num><Project_Year></Project_Year><Project_Title></Project_Title><Org_Name></Org_Name></SearchGrants>" -H"Content-Type: text/xml" http://profiles.catalyst.harvard.edu/services/NIHGrants/SearchGrants.asp
+ 
+ curl.exe -d "<SearchGrants><Name><First></First><Last>kohane</Last></Name><Project_Num></Project_Num><Project_Year></Project_Year><Project_Title></Project_Title><Org_Name></Org_Name></SearchGrants>" -H"Content-Type: text/xml" http://weberdemo.hms.harvard.edu/disambiguation/services/NIHGrants/SearchGrants.asp
+ 
+
+/*************************
+*                        *
+* Profiles Search API:   *
+*                        *
+*************************/
+
+
+ curl.exe -d "<Profiles Operation=\"GetPersonList\" Version=\"2\" xmlns=\"http://connects.profiles.schema/profiles/query\"><QueryDefinition><PersonID>32213</PersonID></QueryDefinition><OutputOptions><OutputFilterList><OutputFilter Summary=\"true\">KeywordList</OutputFilter><OutputFilter Summary=\"true\">SimilarPersonList</OutputFilter><OutputFilter Summary=\"true\">CoAuthorList</OutputFilter><OutputFilter Summary=\"true\">NeighborList</OutputFilter></OutputFilterList></OutputOptions></Profiles>" -H"Content-Type: text/xml" http://connects.catalyst.harvard.edu/ProfilesAPI/ProfileService.svc/ProfileSearch
+
+Data without escape chars:
+<Profiles Operation="GetPersonList" Version="2" xmlns="http://connects.profiles.schema/profiles/query"><QueryDefinition><PersonID>32213</PersonID></QueryDefinition><OutputOptions><OutputFilterList><OutputFilter Summary="true">KeywordList</OutputFilter><OutputFilter Summary="true">SimilarPersonList</OutputFilter><OutputFilter Summary="true">CoAuthorList</OutputFilter><OutputFilter Summary="true">NeighborList</OutputFilter></OutputFilterList></OutputOptions></Profiles>
+
+ curl.exe -d "<SearchOptions><MatchOptions><SearchString ExactMatch=\"false\">informatics</SearchString><ClassURI>http://xmlns.com/foaf/0.1/Person</ClassURI><SearchFiltersList><SearchFilter Property=\"http://xmlns.com/foaf/0.1/lastName\" MatchType=\"Left\">Weber</SearchFilter></SearchFiltersList></MatchOptions><OutputOptions><Offset>0</Offset><Limit>5</Limit><SortByList><SortBy IsDesc=\"1\" Property=\"http://xmlns.com/foaf/0.1/firstName\" /><SortBy IsDesc=\"0\" Property=\"http://xmlns.com/foaf/0.1/lastName\" /></SortByList></OutputOptions></SearchOptions>" -H"Content-Type: text/xml" http://connects.catalyst.harvard.edu/API/Profiles/Public/Search/ProfilesSearchAPI.svc/search
+ 
+ Data without escape chars:
+ <SearchOptions><MatchOptions><SearchString ExactMatch="false">informatics</SearchString><ClassURI>http://xmlns.com/foaf/0.1/Person</ClassURI><SearchFiltersList><SearchFilter Property="http://xmlns.com/foaf/0.1/lastName" MatchType="Left">Weber</SearchFilter></SearchFiltersList></MatchOptions><OutputOptions><Offset>0</Offset><Limit>5</Limit><SortByList><SortBy IsDesc="1" Property="http://xmlns.com/foaf/0.1/firstName" /><SortBy IsDesc="0" Property="http://xmlns.com/foaf/0.1/lastName" /></SortByList></OutputOptions></SearchOptions>
